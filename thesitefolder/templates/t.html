@@ -1,0 +1,22 @@
+{% extends 'base.html' %}   
+{% block content %}
+    <div class='content_container'>
+        <h1>T page</h1>
+        {% if user.is_authenticated %}
+        
+                <p id="third_block_greeting">News</p>
+                <div id="third_block_nf_fields">
+                    {% for field in newsfields %}
+                        <p><a href="{% url 'nf_detail' field.pk %}">{{ field.title }}</a></p>
+                        <p>{{ field.body }}</p>
+                        <p>____</p>
+                    {% endfor %}
+                </div>
+
+        {% else %}
+        
+            <p id="third_block_auth_req"> You must be <a href="{% url 'login' %}">login</a></p>
+        
+        {% endif %}
+    </div>
+{% endblock content %}
